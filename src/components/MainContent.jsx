@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { nextId } from "../utils/utils";
 import CreateOrder from "./CreateOrder";
 import OrderInfo from "./OrderInfo";
 
@@ -6,11 +7,37 @@ export default function MainContent() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [orders, setOrders] = useState([]);
 
+  function handleDelete(id) {
+    // console.log("clicked deleted");
+    const updatedOrders = orders.filter((order) => order.id !== id);
+    setOrders(updatedOrders);
+  }
+
+  function handleDeliver(order) {
+    // console.log(order);
+    const deliverOrder = orders.map((o) => {
+      if (o.id === order.id) {
+        return {
+          ...o,
+          status: "DELIVERED",
+        };
+      } else {
+        return o;
+      }
+    });
+    setOrders(deliverOrder);
+  }
+
   function handleOrders(customerName, totalPrice) {
     // console.log(customerName);
-    setOrders([
-      ...orders,
-      { id: 1, name: customerName, amount: totalPrice, status: "PENDING" },
+    setOrders((prevOrders) => [
+      {
+        id: nextId(prevOrders),
+        name: customerName,
+        amount: totalPrice,
+        status: "PENDING",
+      },
+      ...prevOrders,
     ]);
   }
 
@@ -27,7 +54,11 @@ export default function MainContent() {
         handleOrders={handleOrders}
         setTotalPrice={setTotalPrice}
       />
-      <OrderInfo orders={orders} />
+      <OrderInfo
+        orders={orders}
+        handleDeliver={handleDeliver}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 }
