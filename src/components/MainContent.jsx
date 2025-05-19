@@ -8,7 +8,10 @@ export default function MainContent() {
 
   function handleOrders(customerName, totalPrice) {
     // console.log(customerName);
-    setOrders([...orders, { id: 1, name: customerName, amount: totalPrice }]);
+    setOrders([
+      ...orders,
+      { id: 1, name: customerName, amount: totalPrice, status: "PENDING" },
+    ]);
   }
 
   function handleTotalPrice(item) {

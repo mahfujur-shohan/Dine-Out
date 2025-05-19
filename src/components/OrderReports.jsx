@@ -46,7 +46,7 @@ export default function OrderReports({ orders }) {
                   <td className="py-3">5</td>
                   <td className="py-3">{order.amount}</td>
                   <td className="py-3">
-                    <span className="text-red-500">PENDING</span>
+                    <span className="text-red-500">{order.status}</span>
                   </td>
                   <td className="py-3">
                     <button className="bg-gray-800 hover:bg-red-600 text-xs px-3 py-1 rounded-full mr-1 transition-colors duration-300">
