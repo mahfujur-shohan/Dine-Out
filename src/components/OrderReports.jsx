@@ -1,4 +1,4 @@
-export default function OrderReports() {
+export default function OrderReports({ orders }) {
   return (
     <div>
       <div className="flex justify-between">
@@ -39,7 +39,25 @@ export default function OrderReports() {
               </tr>
             </thead>
             <tbody className="text-sm">
-              {/* Row 1 */}
+              {orders.map((order) => (
+                <tr key={order.id} className="border-t border-gray-700">
+                  <td className="py-3">{order.id}</td>
+                  <td className="py-3">{order.name}</td>
+                  <td className="py-3">5</td>
+                  <td className="py-3">{order.amount}</td>
+                  <td className="py-3">
+                    <span className="text-red-500">PENDING</span>
+                  </td>
+                  <td className="py-3">
+                    <button className="bg-gray-800 hover:bg-red-600 text-xs px-3 py-1 rounded-full mr-1 transition-colors duration-300">
+                      Delete
+                    </button>
+                    <button className="bg-gray-800 hover:bg-green-600 text-xs px-3 py-1 rounded-full transition-colors duration-300">
+                      DELIVER
+                    </button>
+                  </td>
+                </tr>
+              ))}
               <tr className="border-t border-gray-700">
                 <td className="py-3">21</td>
                 <td className="py-3">Sumit Saha</td>
@@ -57,8 +75,8 @@ export default function OrderReports() {
                   </button>
                 </td>
               </tr>
-              {/* Row 2 */}
-              <tr className="border-t border-gray-700">
+
+              {/* <tr className="border-t border-gray-700">
                 <td className="py-3">21</td>
                 <td className="py-3">Akash Ahmed</td>
                 <td className="py-3">5</td>
@@ -72,7 +90,7 @@ export default function OrderReports() {
                   </button>
                 </td>
               </tr>
-              {/* Row 3 */}
+
               <tr className="border-t border-gray-700">
                 <td className="py-3">21</td>
                 <td className="py-3">Saad Hasan</td>
@@ -90,7 +108,7 @@ export default function OrderReports() {
                   </button>
                 </td>
               </tr>
-              {/* Row 4 */}
+
               <tr className="border-t border-gray-700">
                 <td className="py-3">21</td>
                 <td className="py-3">MD Salahuddin</td>
@@ -108,7 +126,7 @@ export default function OrderReports() {
                   </button>
                 </td>
               </tr>
-              {/* Row 5 */}
+
               <tr className="border-t border-gray-700">
                 <td className="py-3">21</td>
                 <td className="py-3">Ferdous</td>
@@ -126,7 +144,7 @@ export default function OrderReports() {
                   </button>
                 </td>
               </tr>
-              {/* Row 6 */}
+
               <tr className="border-t border-gray-700">
                 <td className="py-3">21</td>
                 <td className="py-3">Rafe</td>
@@ -144,7 +162,7 @@ export default function OrderReports() {
                   </button>
                 </td>
               </tr>
-              {/* Row 7 */}
+
               <tr className="border-t border-gray-700">
                 <td className="py-3">21</td>
                 <td className="py-3">Sarwar</td>
@@ -162,7 +180,7 @@ export default function OrderReports() {
                   </button>
                 </td>
               </tr>
-              {/* Row 8 */}
+
               <tr className="border-t border-gray-700">
                 <td className="py-3">21</td>
                 <td className="py-3">Obaidul</td>
@@ -179,7 +197,7 @@ export default function OrderReports() {
                     DELIVER
                   </button>
                 </td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>

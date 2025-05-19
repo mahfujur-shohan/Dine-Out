@@ -1,11 +1,11 @@
 import OrderReports from "./OrderReports";
 import OrderSummary from "./OrderSummary";
 
-export default function OrderInfo() {
+export default function OrderInfo({ orders }) {
   return (
     <div className="md:col-span-2 h-[calc(100vh_-_130px)]">
-      <OrderSummary />
-      <OrderReports />
+      <OrderSummary orders={orders} />
+      <OrderReports orders={orders} />
     </div>
   );
 }

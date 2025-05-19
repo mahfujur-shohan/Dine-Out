@@ -1,6 +1,18 @@
+import { useState } from "react";
 import { data } from "../data/data";
 
-export default function CreateOrder({ totalPrice, handleTotalPrice }) {
+export default function CreateOrder({
+  totalPrice,
+  handleTotalPrice,
+  handleOrders,
+  setTotalPrice,
+}) {
+  const [customerName, setCustomerName] = useState("");
+
+  function handleCustomerName(e) {
+    setCustomerName(e.target.value);
+  }
+
   return (
     <>
       <div className="bg-cardbg rounded-lg p-6 h-[calc(100vh_-_130px)]">
@@ -16,6 +28,8 @@ export default function CreateOrder({ totalPrice, handleTotalPrice }) {
           </label>
           <input
             type="text"
+            value={customerName}
+            onChange={handleCustomerName}
             className="w-full bg-gray-700 bg-opacity-50 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300"
           />
         </div>
@@ -179,7 +193,11 @@ export default function CreateOrder({ totalPrice, handleTotalPrice }) {
         </div>
         {/* Place Order Button */}
         <button
-          onClick={() => console.log(totalPrice)}
+          onClick={() => {
+            handleOrders(customerName, totalPrice);
+            setCustomerName("");
+            setTotalPrice(0);
+          }}
           className="w-full bg-primary hover:bg-opacity-90 text-white font-medium py-3 rounded-full transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
         >
           Place Order (BDT {totalPrice})

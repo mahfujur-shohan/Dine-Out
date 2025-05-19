@@ -4,6 +4,12 @@ import OrderInfo from "./OrderInfo";
 
 export default function MainContent() {
   const [totalPrice, setTotalPrice] = useState(0);
+  const [orders, setOrders] = useState([]);
+
+  function handleOrders(customerName, totalPrice) {
+    // console.log(customerName);
+    setOrders([...orders, { id: 1, name: customerName, amount: totalPrice }]);
+  }
 
   function handleTotalPrice(item) {
     const updatedPrice = totalPrice + item.price;
@@ -15,8 +21,10 @@ export default function MainContent() {
       <CreateOrder
         totalPrice={totalPrice}
         handleTotalPrice={handleTotalPrice}
+        handleOrders={handleOrders}
+        setTotalPrice={setTotalPrice}
       />
-      <OrderInfo />
+      <OrderInfo orders={orders} />
     </div>
   );
 }
